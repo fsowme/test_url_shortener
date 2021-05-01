@@ -43,6 +43,7 @@ def make_short_url(request):
     )
     if domain.blocked:
         return JsonResponse({"url": "domain in blacklist"})
+    # Адреса не сильно уникальны, вариант только для тестового.
     short_path = "".join(random.choices(string.ascii_letters, k=6))
     url, _ = URL.objects.get_or_create(
         url_original=new_url,
